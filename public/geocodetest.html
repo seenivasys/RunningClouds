@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function distance(lat1, lon1, lat2, lon2) {
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+	dist = dist * 0.8684 
+	return dist
+}
+
+function jsonTest() {
+
+var currLat = 38.9270
+var currLong = -90.199402
+var jsonTest =[{ "_id" : 1, "city" : "Ballwin", "state" : "MO", "zipCode" : "63021", "latitude" : 38.627003, "longitude" : -90.199402, "name" : "Arch marathon", "__v" : 0 },
+	{ "_id" :2, "city" : "Atlanta", "state" : "GA", "zipCode" : "30301", "latitude" : 33.749249, "longitude" : -84.387314, "name" : "Atlanta Marathon", "__v" : 0 },
+	{ "_id" :3, "city" : "Chicago", "state" : "IL", "zipCode" : "60007", "latitude" : 41.881832, "longitude" : -87.623177, "name" : "Chicago Martahon", "__v" : 0 }];
+
+
+
+
+	for (i = 0; i < jsonTest.length; i++) {
+		jsonTest[i].distance = distance(currLat,currLong,jsonTest[i].latitude,jsonTest[i].longitude);
+			console.log(jsonTest[i]); 
+	}
+
+	jsonTest.sort(function(a, b){return a.distance - b.distance});
+
+	for (i = 0; i < jsonTest.length; i++) {
+    	console.log(jsonTest[i]); 
+	}
+
+
+  
+}
+
+function showPosition(position) {
+
+	console.log(jsonTest);
+
+  
+}
+</script>
+<script type="text/javascript"> jsonTest() </script>
+
+</body>
+</html>
