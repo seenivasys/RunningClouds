@@ -50,7 +50,7 @@
 				<th ng:click="changeSorting('state')">State <img src="images/sort.jpg" alt="Smiley face" height="14"></th>
 				<th>Zipcode</th>
 				<th ng:click="changeSorting('distance')">Distance <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
-				<th>Date</th>
+				<th ng:click="changeSorting('dateMarathon')">Date <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
 			</thead>
 		  <tr ng-repeat="todo in todos">
 		    <td>{{ todo.name }}</td>
@@ -58,25 +58,24 @@
 		    <td>{{ todo.state }}</td>
 		    <td>{{ todo.zipCode }}</td>
 		    <td>{{ todo.distance }}</td>
-		    <td> </td>
+		    <td>{{ todo.dateMarathon }}</td>
 		  </tr>
 		</table>
-		<div id="todo-list" class="row">
+		<!-- <div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<!-- LOOP OVER THE TODOS IN $scope.todos 
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.name }} - {{todo.city}} -->
+						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.name }} - {{todo.city}} 
 					</label>
 				</div>
-
-
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
 
 			</div>
-		</div>
+		</div>-->
+		<br/> <br/> <br/>
 
 		<!-- FORM TO CREATE TODOS -->
 		<div id="todo-form" class="row">
@@ -85,14 +84,14 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="Marathon name" ng-model="formData.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="Race Date" ng-model="formData.dateMarathon">
+						<input type="text" class="form-control input-lg text-center" placeholder="Latittude" ng-model="formData.latitude">
+						<input type="text" class="form-control input-lg text-center" placeholder="Longitude" ng-model="formData.longitude">
+						<input type="text" class="form-control input-lg text-center" placeholder="Marathon Name" ng-model="formData.name">
 						<input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="formData.city">
 						<input type="text" class="form-control input-lg text-center" placeholder="State" ng-model="formData.state">
 						<input type="text" class="form-control input-lg text-center" placeholder="Zipcode" ng-model="formData.zipCode">
-						<input type="text" class="form-control input-lg text-center" placeholder="Latittude" ng-model="formData.latitude">
-						<input type="text" class="form-control input-lg text-center" placeholder="Longitude" ng-model="formData.longitude">
 					</div>
-
 					<!-- createToDo() WILL CREATE NEW TODOS -->
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>

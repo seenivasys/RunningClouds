@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 module.exports = mongoose.model('Marathons', {
     name: {
         type: String,
-        default: ''
+        default: 'Half Marathon'
     },
     city:String,
     state:String,

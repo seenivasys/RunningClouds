@@ -13,46 +13,51 @@ angular.module('todoController', [])
 				$scope.loading = true;
 				$scope.currLat = 1;
 				$scope.currLong = 1;
-				$scope.geoLoad = 'inprogress';
+				//$scope.geoLoad = 'inprogress';
 				$scope.assending = 1;
+				
+				var options = {
+  				enableHighAccuracy: true,
+  				timeout: 5000,
+  				maximumAge: 0
+				};
 
-				if ($scope.geoLoad != 'done'){ 
-					if (navigator.geolocation) {
-				        navigator.geolocation.getCurrentPosition(function(position) {
-							$scope.currLat = position.coords.latitude;
+				function success(position) {
+				  var crd = position.coords;
+
+				  console.log('Your current position is:');
+				  console.log(`Latitude : ${crd.latitude}`);
+				  console.log(`Longitude: ${crd.longitude}`);
+				  console.log(`More or less ${crd.accuracy} meters.`);
+				  $scope.currLat = position.coords.latitude;
 							$scope.currLong = position.coords.longitude;
 
 
 							for (i = 0; i < data.length; i++) {
-								data[i].distance = Math.round(Todos.distance($scope.currLat,$scope.currLong,data[i].latitude,data[i].longitude));
+								$scope.todos[i].distance = Math.round(Todos.distance($scope.currLat,$scope.currLong,data[i].latitude,data[i].longitude));
+								console.log($scope.todos[i].distance);
 							}
 
-							data.sort(function(a, b){return a.distance - b.distance});
+							//data.sort(function(a, b){return a.distance - b.distance});
 							console.log(data);							
-							$scope.todos = data;
+							//$scope.todos = data;
+							$scope.$apply();
 
 							console.log($scope.currLat+', long='+$scope.currLong);
-							$scope.geoLoad = 'done';
-	
-				        });
-				    } else { 
-				        alert("Geolocation is not supported by this browser.");
-				    }
-				}
-			 //    var i = 0;
-				// for (; i < 1000000; i++) {
-				//     if ($scope.status === 'done'){
-				//       break;
-				//     }
-				// }
-				// console.log('after loop='+i);
-				// $scope.status = 'inprogress';
+				};
+
+				function error(err) {
+				  console.warn(`ERROR(${err.code}): ${err.message}`);
+				};
+
+				navigator.geolocation.getCurrentPosition(success, error, options);
 
 				console.log(data);
 
 				$scope.todos = data;
+
 				console.log($scope.currLat+', loading completed **, long at 2='+$scope.currLong);
-  				$scope.loading = false;
+  				//$scope.loading = false;
 
 			});
 
@@ -65,6 +70,8 @@ angular.module('todoController', [])
 				data.sort(function(a, b){return (a.distance - b.distance) * $scope.assending });
 			} else if(field == 'city') { 
 				data.sort(function(a, b){return (a.city > b.city? 1 : -1) * $scope.assending  });
+			} else if(field == 'dateMarathon') { 
+				data.sort(function(a, b){return (a.dateMarathon > b.dateMarathon? 1 : -1) * $scope.assending  });
 			} 
 			$scope.todos = data
 
