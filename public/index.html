@@ -26,7 +26,8 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -37,69 +38,16 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h1>Marathon List <span class="label label-info">{{ todos.length }}</span></h1>
-		</div>
+		<ul class="list-inline">
+		    <li><a href="#/">Home</a></li>
+		    <li><a href="#maps">Maps</a></li>
+		    <li><a href="#admin">Admin</a></li>
+		</ul>
 
-		<!-- TODO LIST -->
-		<table>
-			<thead>
-				<th>Marathon Name</th>
-				<th ng:click="changeSorting('city')">City <img src="images/sort.jpg" alt="Smiley face" height="14"></th>
-				<th ng:click="changeSorting('state')">State <img src="images/sort.jpg" alt="Smiley face" height="14"></th>
-				<th>Zipcode</th>
-				<th ng:click="changeSorting('distance')">Distance <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
-				<th ng:click="changeSorting('dateMarathon')">Date <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
-			</thead>
-		  <tr ng-repeat="todo in todos">
-		    <td>{{ todo.name }}</td>
-		    <td>{{ todo.city }}</td>
-		    <td>{{ todo.state }}</td>
-		    <td>{{ todo.zipCode }}</td>
-		    <td>{{ todo.distance }}</td>
-		    <td>{{ todo.dateMarathon }}</td>
-		  </tr>
-		</table>
-		<!-- <div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-				<!-- LOOP OVER THE TODOS IN $scope.todos 
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.name }} - {{todo.city}} 
-					</label>
-				</div>
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
-			</div>
-		</div>-->
-		<br/> <br/> <br/>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="Race Date" ng-model="formData.dateMarathon">
-						<input type="text" class="form-control input-lg text-center" placeholder="Latittude" ng-model="formData.latitude">
-						<input type="text" class="form-control input-lg text-center" placeholder="Longitude" ng-model="formData.longitude">
-						<input type="text" class="form-control input-lg text-center" placeholder="Marathon Name" ng-model="formData.name">
-						<input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="formData.city">
-						<input type="text" class="form-control input-lg text-center" placeholder="State" ng-model="formData.state">
-						<input type="text" class="form-control input-lg text-center" placeholder="Zipcode" ng-model="formData.zipCode">
-					</div>
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
-			</div>
-		</div>
+		<div class="ng-view"></div>
 
 		<div class="text-center text-muted">
-			<p>A demo by me.</p>
+			<p>Footer notes.</p>
 		</div>
 
 	</div>

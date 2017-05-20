@@ -1,0 +1,20 @@
+<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Race Date" ng-model="formData.dateMarathon">
+						<input type="text" class="form-control input-lg text-center" placeholder="Latittude" ng-model="formData.latitude">
+						<input type="text" class="form-control input-lg text-center" placeholder="Longitude" ng-model="formData.longitude">
+						<input type="text" class="form-control input-lg text-center" placeholder="Marathon Name" ng-model="formData.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="City" ng-model="formData.city">
+						<input type="text" class="form-control input-lg text-center" placeholder="State" ng-model="formData.state">
+						<input type="text" class="form-control input-lg text-center" placeholder="Zipcode" ng-model="formData.zipCode">
+					</div>
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>

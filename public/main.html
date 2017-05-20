@@ -1,0 +1,25 @@
+<!-- TODO LIST -->
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="well text-center">
+			<h1>Marathon List <span class="label label-info">{{ todos.length }}</span></h1>
+		</div>
+
+		<table>
+			<thead>
+				<th>Marathon Name</th>
+				<th ng:click="changeSorting('city')">City <img src="images/sort.jpg" alt="Smiley face" height="14"></th>
+				<th ng:click="changeSorting('state')">State <img src="images/sort.jpg" alt="Smiley face" height="14"></th>
+				<th>Zipcode</th>
+				<th ng:click="changeSorting('distance')">Distance <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
+				<th ng:click="changeSorting('dateMarathon')">Date <img src="images/sort.jpg" alt="Smiley face" height="14">&nbsp;&nbsp;</th>
+			</thead>
+		  <tr ng-repeat="todo in todos">
+		    <td>{{ todo.name }}</td>
+		    <td>{{ todo.city }}</td>
+		    <td>{{ todo.state }}</td>
+		    <td>{{ todo.zipCode }}</td>
+		    <td>{{ todo.distance }}</td>
+		    <td>{{ todo.dateMarathon }}</td>
+		  </tr>
+		</table>

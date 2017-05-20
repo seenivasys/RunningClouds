@@ -1,5 +1,20 @@
-angular.module('todoController', [])
+angular.module('todoController', ["ngRoute"])
 
+	.config(function($routeProvider) {
+	    $routeProvider
+	    .when("/", {
+	        templateUrl : "main.html"
+	    })
+	    .when("/admin", {
+	        templateUrl : "admin.html"
+	    })
+	    .when("/green", {
+	        templateUrl : "green.htm"
+	    })
+	    .when("/blue", {
+	        templateUrl : "blue.htm"
+	    });
+	})
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
