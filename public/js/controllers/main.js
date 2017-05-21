@@ -20,6 +20,7 @@ angular.module('todoController', ["ngRoute"])
 		$scope.formData = {};
 		$scope.loading = true;
 
+
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -28,7 +29,7 @@ angular.module('todoController', ["ngRoute"])
 				$scope.loading = true;
 				$scope.currLat = 1;
 				$scope.currLong = 1;
-				//$scope.geoLoad = 'inprogress';
+				$scope.myAddress=' ';
 				$scope.assending = 1;
 				
 				var options = {
@@ -53,6 +54,13 @@ angular.module('todoController', ["ngRoute"])
 								console.log($scope.todos[i].distance);
 							}
 
+							var GEOCODING = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + '%2C' + position.coords.longitude + '&language=en';
+
+				            $.getJSON(GEOCODING).done(function(location) {
+				            	$("#loading-icon").removeClass('fa-refresh');
+				                $scope.myAddress=location.results[1].formatted_address;
+				                $scope.$apply();
+				            })
 							//data.sort(function(a, b){return a.distance - b.distance});
 							console.log(data);							
 							//$scope.todos = data;

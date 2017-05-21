@@ -23,12 +23,18 @@
 		    border-bottom: 2px solid black; 
 		    cursor: pointer;  
 		}
+
+		.glyphicon-refresh-animate {
+ 	  	 -animation: spin .7s infinite linear;
+    		-webkit-animation: spin2 .7s infinite linear;
+		}
 	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script><!-- load angular -->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
@@ -46,8 +52,9 @@
 
 		<div class="ng-view"></div>
 
+		<br/><br/><br/>
 		<div class="text-center text-muted">
-			<p>Footer notes.</p>
+			<p>Footer notes @2017.</p>
 		</div>
 
 	</div>
